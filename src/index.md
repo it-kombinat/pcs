@@ -1,12 +1,12 @@
 # Pentest Cheat Sheet
 
-## Notes on pen-testing and htb challenges.
+## Notes on pen-testing-
 
-[Boxes Spreadsheet](https://docs.google.com/spreadsheets/d/1dwSMIAPIam0PuRBkCiDI88pU3yzrqqHkDtBngUHNCw8/edit#gid=1839402159])
+Quick Links to Linux and Windows Checklist.
 
-| Linux Boxes | Windows Boxes | More challenging |
-| ----------- | ------------- | ---------------- |
-| passage     | worker        | jeeves           |
+[Linux Check-list](linux/checklist.md)
+
+[Windows Check-list](windows/checklist.md)
 
 ### More useful notes on Pentesting
 
@@ -15,3 +15,5 @@
 [TJnull’s Preparation Guide for PWK/OSCP](https://www.netsecfocus.com/oscp/2019/03/29/The_Journey_to_Try_Harder-_TJNulls_Preparation_Guide_for_PWK_OSCP.html)
 
 [Introduction · Total OSCP Guide - sushant747](https://sushant747.gitbooks.io/total-oscp-guide/content/pay)
+
+[Another Pentest-Cheat-Sheet](https://github.com/d0n601/Pentest-Cheat-Sheet)

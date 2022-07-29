@@ -18,6 +18,7 @@
 
 - [Windows]()
 
+  - [Enumeration](windows/enum.md)
   - [File Upload](windows/file-upload.md)
   - [Buffer Overflow](windows/overflow.md)
   - [Active Directory](windows/active.md)
