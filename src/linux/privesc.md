@@ -198,6 +198,9 @@ portfwd add -l 22 -p 22 -r 127.0.0.1
 /tmp/socat tcp-listen:8888,reuseaddr,fork tcp:localhost:22
 ```
 
+[Getting Started with Socat](https://www.redhat.com/sysadmin/getting-started-socat)
+
+## Further Links
 [linuxprivchecker.py -- a Linux Privilege Escalation Check Script](https://github.com/sleventyeleven/linuxprivchecker/blob/master/linuxprivchecker.py)
 
 [Basic Linux Privilege Escalation](https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/)

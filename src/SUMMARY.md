@@ -40,6 +40,8 @@
   - [LFI](web/lfi.md)
   - [XSS](web/xss.md)
 
+- [OSINT](osint.md)
+
 - [Steganography](steganography.md)
 
 - [MSF-Venom](./msfvenom.md)
