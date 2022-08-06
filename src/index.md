@@ -1,8 +1,6 @@
 # Pentest Cheat Sheet
 
-## Notes on pen-testing-
-
-Quick Links to Linux and Windows Checklist.
+### Quick Links to Linux and Windows Checklist.
 
 [Linux Check-list](linux/checklist.md)
 
