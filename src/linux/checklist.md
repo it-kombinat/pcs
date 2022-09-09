@@ -143,6 +143,7 @@ rpcclient -U "" INSERTIPADDRESS
 	netshareenumall
 
 smbclient -L INSERTIPADDRESS
+smbclient -U username -L INSERTIPADDRESS
 smbclient //INSERTIPADDRESS/tmp
 smbclient \\\\INSERTIPADDRESS\\ipc$ -U john
 smbclient //INSERTIPADDRESS/ipc$ -U john
