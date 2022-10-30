@@ -61,6 +61,10 @@ gobuster dir -u http://IP -w wordlist -o gobuster.log -t 50
 -s 302,307...403 to add status codes
 -x sh,pl to add file extensions
 -k to ignore ssl certificate
+e.g.(with extensions)
+ ```
+ gobuster dir -u http://dev.holo.live -w /usr/share/wordlists/dirb/big.txt -x php,html,htm,txt,bak,zip,~
+ ```
 
 #### Wordlists
 

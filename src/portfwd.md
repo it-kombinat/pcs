@@ -235,6 +235,13 @@ netcat
 for i in {1..65535}; do (echo > /dev/tcp/192.168.1.1/$i) >/dev/null 2>&1 && echo $i is open; done
 ```
 
+### Proxychains
+- /etc/proxychains4.conf
+```
+socks5 127.0.0.1 1080
+```
+Run a command you need to prefix it with “proxychains <command>”
+
 ### Further information and Links
 
 * [Pentesting Pivoting Guide](https://github.com/t3l3machus/pentest-pivoting)
