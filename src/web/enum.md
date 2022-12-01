@@ -109,6 +109,11 @@ ffuf -u "http://url/?FUZZ=id;whoami||ls" -w /usr/seclist/discovery/web-content/b
 ffuf -u "http://url/?FUZZ=/etc/passwd" -w /usr/seclist/discovery/web-content/burp-parameter-names.txt -fs 5829
 ```
 
+#### User enumeration with FFuf
+```
+ffuf -w /usr/share/wordlists/SecLists/Usernames/Names/names.txt -X POST -d "username=FUZZ&email=x&password=x&cpassword=x" -H "Content-Type: application/x-www-form-urlencoded" -u http://MACHINE_IP/customers/signup -mr "username already exists"
+```
+
 ## DNS
 
 ```

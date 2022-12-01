@@ -13,3 +13,8 @@ wfuzz -u http://URL/page.pgp?code=FUZZ -w /usr/share/seclists/Fuzzing/special-ch
 ```
 wfuzz -c -w /wordlist.txt -d "username=FUZZ&password=password" --hs "No acount found with that username" http://IP
 ```
+
+### FFuf
+```
+ffuf -w valid_usernames.txt:W1,/usr/share/wordlists/SecLists/Passwords/Common-Credentials/10-million-password-list-top-100.txt:W2 -X POST -d "username=W1&password=W2" -H "Content-Type: application/x-www-form-urlencoded" -u http://MACHINE_IP/customers/login -fc 200
+```
