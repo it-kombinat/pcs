@@ -82,3 +82,5 @@ Create an upgraded wordlist using hashcat rules
 ```
 hashcat -r /usr/share/hashcat/rules/best64.rule --stdout rule > wordlist.txt
 ```
+Online Cracker
+- https://github.com/someshkar/colabcat
