@@ -1,0 +1,297 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Scanning &amp; Enumeration - Pentest Cheat Sheet</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="Notes on pen-testing.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Pentest Cheat Sheet</a></li><li class="chapter-item expanded "><a href="scan.html" class="active"><strong aria-hidden="true">1.</strong> Scanning &amp; Enumeration</a></li><li class="chapter-item expanded "><a href="recon.html"><strong aria-hidden="true">2.</strong> Information Gathering (Reconnaissance)</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> Linux</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="linux/enum.html"><strong aria-hidden="true">3.1.</strong> Enumeration</a></li><li class="chapter-item expanded "><a href="linux/rev-shell.html"><strong aria-hidden="true">3.2.</strong> Reverse Shell</a></li><li class="chapter-item expanded "><a href="linux/privesc.html"><strong aria-hidden="true">3.3.</strong> Privesc</a></li><li class="chapter-item expanded "><a href="linux/overflow.html"><strong aria-hidden="true">3.4.</strong> Buffer Overflow</a></li><li class="chapter-item expanded "><a href="linux/checklist.html"><strong aria-hidden="true">3.5.</strong> Check-list</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Windows</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="windows/enum.html"><strong aria-hidden="true">4.1.</strong> Enumeration</a></li><li class="chapter-item expanded "><a href="windows/file-upload.html"><strong aria-hidden="true">4.2.</strong> File Upload</a></li><li class="chapter-item expanded "><a href="windows/overflow.html"><strong aria-hidden="true">4.3.</strong> Buffer Overflow</a></li><li class="chapter-item expanded "><a href="windows/active.html"><strong aria-hidden="true">4.4.</strong> Active Directory</a></li><li class="chapter-item expanded "><a href="windows/privesc.html"><strong aria-hidden="true">4.5.</strong> Privesc</a></li><li class="chapter-item expanded "><a href="windows/rev-shell.html"><strong aria-hidden="true">4.6.</strong> Reverse Shell</a></li><li class="chapter-item expanded "><a href="windows/ntlm.html"><strong aria-hidden="true">4.7.</strong> NTLM Hashes</a></li><li class="chapter-item expanded "><a href="windows/persistence.html"><strong aria-hidden="true">4.8.</strong> Maintaining Access</a></li><li class="chapter-item expanded "><a href="windows/checklist.html"><strong aria-hidden="true">4.9.</strong> Check-list</a></li></ol></li><li class="chapter-item expanded "><a href="portfwd.html"><strong aria-hidden="true">5.</strong> Port Forwarding/Tunneling</a></li><li class="chapter-item expanded "><a href="brute-force.html"><strong aria-hidden="true">6.</strong> Brute-Force</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> Web Applications</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="web/enum.html"><strong aria-hidden="true">7.1.</strong> Enumeration</a></li><li class="chapter-item expanded "><a href="web/sql.html"><strong aria-hidden="true">7.2.</strong> SQL Injection</a></li><li class="chapter-item expanded "><a href="web/file-upload.html"><strong aria-hidden="true">7.3.</strong> File Upload</a></li><li class="chapter-item expanded "><a href="web/fuzz.html"><strong aria-hidden="true">7.4.</strong> Fuzzing</a></li><li class="chapter-item expanded "><a href="web/lfi.html"><strong aria-hidden="true">7.5.</strong> LFI</a></li><li class="chapter-item expanded "><a href="web/xss.html"><strong aria-hidden="true">7.6.</strong> XSS</a></li></ol></li><li class="chapter-item expanded "><a href="osint.html"><strong aria-hidden="true">8.</strong> OSINT</a></li><li class="chapter-item expanded "><a href="passback.html"><strong aria-hidden="true">9.</strong> PassBack Attack</a></li><li class="chapter-item expanded "><a href="steganography.html"><strong aria-hidden="true">10.</strong> Steganography</a></li><li class="chapter-item expanded "><a href="msfvenom.html"><strong aria-hidden="true">11.</strong> MSF-Venom</a></li><li class="chapter-item expanded "><a href="wireless.html"><strong aria-hidden="true">12.</strong> Wireless Penetration Testing</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Pentest Cheat Sheet</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="scanning--enumeration"><a class="header" href="#scanning--enumeration">Scanning &amp; Enumeration</a></h1>
+<h2 id="scanning-with-nmap"><a class="header" href="#scanning-with-nmap">Scanning with nmap</a></h2>
+<pre><code>nmap -T4 -p- -A
+</code></pre>
+<pre><code>nmap -sV -sC -oA $file $IP
+</code></pre>
+<h3 id="nmap-scripting-language"><a class="header" href="#nmap-scripting-language">nmap Scripting Language</a></h3>
+<pre><code>nmap -p $PORT --script $NAME -oA $IP
+</code></pre>
+<p>Script names can be: safe, vuln, discovery, version,brute, intrusive, auth, broadcast</p>
+<h2 id="enumerating-smb"><a class="header" href="#enumerating-smb">Enumerating SMB</a></h2>
+<h3 id="smb-client"><a class="header" href="#smb-client">SMB client</a></h3>
+<pre><code>smbclient -L \\\\192.168.57.134\\
+</code></pre>
+<pre><code>smbclient \\\\192.168.57.134\\FileShare
+
+To download all of the files in a share
+smbclient //192.168.57.134/FileShare
+smb: \&gt; recurse ON
+smb: \&gt; prompt OFF
+smb: \&gt; mget *
+</code></pre>
+<pre><code>nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse IP
+</code></pre>
+<h3 id="smb-map"><a class="header" href="#smb-map">SMB map</a></h3>
+<pre><code>smbmap -u USER -H IP
+smbmap -H IP -R --depth 5
+
+search for files
+smbmap -R FOLDER -H IP
+
+download files
+smbmap -R FOLDER -H IP -A Group.xml -q
+
+using creds
+smbmap -d active.htb -u user -p password -H IP
+</code></pre>
+<p>To mount smb shares</p>
+<pre><code>mount -t cifs //IP/folder /mnt/smb
+mount -t cifs -o username=USER //IP//SHARE /mnt/smb
+</code></pre>
+<h3 id="brute-force-smb-login"><a class="header" href="#brute-force-smb-login">Brute force smb login</a></h3>
+<pre><code>msf5 &gt; use auxiliary/scanner/smb/smb_login
+msf5 auxiliary(scanner/smb/smb_login) &gt; set pass_file wordlist
+pass_file =&gt; wordlist
+msf5 auxiliary(scanner/smb/smb_login) &gt; set USER_file users.txt
+USER_file =&gt; users.txt
+msf5 auxiliary(scanner/smb/smb_login) &gt; set RHOSTS fuse.htb
+msf5 auxiliary(scanner/smb/smb_login) &gt; run
+</code></pre>
+<p>Find creds and run smb client again</p>
+<h2 id="enumerating-using-rpcclient"><a class="header" href="#enumerating-using-rpcclient">Enumerating using rpcclient</a></h2>
+<pre><code>rpcclient -U DOMAIN\\user IP
+
+rpcclient $&gt; enumdomusers
+rpcclient $&gt; enumprivs
+rpcclient $&gt; enumprinters
+</code></pre>
+<h2 id="enumerating-mountsrpcbind"><a class="header" href="#enumerating-mountsrpcbind">Enumerating Mounts(RPCbind)</a></h2>
+<pre><code>nmap -p 111 --script=nfs-ls,nfs-statfs,nfs-showmount 10.10.148.131
+</code></pre>
+<h2 id="enumerating-nfs"><a class="header" href="#enumerating-nfs">Enumerating NFS</a></h2>
+<p>to list the NFS shares</p>
+<pre><code>/usr/sbin/showmount -e [IP]
+</code></pre>
+<p>to mount shares</p>
+<pre><code>sudo mount -t nfs 10.10.143.241:home /tmp/mount/ -nolock
+</code></pre>
+<h2 id="enumerating-rsync"><a class="header" href="#enumerating-rsync">Enumerating rsync</a></h2>
+<pre><code class="language-bash">
+nmap -sV --script &quot;rsync-list-modules&quot; -p &lt;PORT&gt; &lt;IP&gt;
+
+rsync --list-only rsync://rsync-connect@$IP/
+rsync -av --list-only rsync://$IP:873
+rsync -av --list-only rsync://192.168.0.123/shared_name
+</code></pre>
+<p>Copy all files</p>
+<pre><code class="language-bash">rsync -av rsync://192.168.0.123:8730/shared_name ./rsyn_shared
+</code></pre>
+<p>Creating a folder and copying the files</p>
+<pre><code>rsync -a /root/thm/authorized_keys rsync://rsync-connect@$IP/files/sys-internal/.ssh/
+
+rsync -av home_user/.ssh/ rsync://username@192.168.0.123/home_user/.ssh
+</code></pre>
+<h2 id="enum4linux"><a class="header" href="#enum4linux">Enum4Linux</a></h2>
+<h2 id="enum-telnet"><a class="header" href="#enum-telnet">Enum telnet</a></h2>
+<pre><code>telnet IP PORT
+</code></pre>
+<h3 id="check-for-pings-tcpdump"><a class="header" href="#check-for-pings-tcpdump">check for pings (tcpdump)</a></h3>
+<pre><code>Listener
+sudo tcpdump ip proto \\icmp -i tun0
+
+ping IP -c 1
+</code></pre>
+<h2 id="ftp"><a class="header" href="#ftp">FTP</a></h2>
+<pre><code>ftp IP
+anonymous login
+enable binary mode
+binary
+</code></pre>
+<h3 id="downloading-ftp"><a class="header" href="#downloading-ftp">Downloading FTP</a></h3>
+<pre><code>wget --user USER --password PASSWORD -r ftp://IP
+</code></pre>
+<h3 id="telnet-over-ftp"><a class="header" href="#telnet-over-ftp">telnet over FTP</a></h3>
+<pre><code>telnet IP PORT
+site cpfr /path-of-file/folder-to-copy
+site cpto /path-where-to-copy
+</code></pre>
+<h2 id="ldap"><a class="header" href="#ldap">LDAP</a></h2>
+<pre><code>To get the domain name
+ldapsearch -x h IP -s base namingcontexts
+
+To get the domain information
+ldapsearch -x h IP -s sub -b 'DC=cascade,DC=local'
+</code></pre>
+<h2 id="additional-scanning-tools"><a class="header" href="#additional-scanning-tools">Additional Scanning Tools</a></h2>
+<h3 id="masscan"><a class="header" href="#masscan">Masscan</a></h3>
+<pre><code>mass -p1-65535 --rate 1000 192.168.57.134
+</code></pre>
+<h3 id="autorecon"><a class="header" href="#autorecon">Autorecon</a></h3>
+<p>https://github.com/Tib3rius/AutoRecon</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="recon.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="recon.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
